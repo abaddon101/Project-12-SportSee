@@ -1,0 +1,36 @@
+.sidebar {
+  background-color: black;
+  width: 120px;
+  display: flex;
+  justify-content: space-evenly;
+  height: 1000px;
+  flex-direction: column;
+  .copyright {
+    color: #fff;
+    font-size: 12px;
+    transform: rotate(-90deg);
+    white-space: nowrap;
+  }
+
+  .vertical-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    list-style-type: none;
+    height: 70%;
+  }
+  a {
+    border-radius: 10px;
+    background-color: aliceblue;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+  }
+  .logo-navbar {
+    align-items: center;
+    width: 40px;
+  }
+}

@@ -1,0 +1,22 @@
+.nav-container {
+  display: flex;
+  align-items: center;
+  background-color: black;
+}
+.navbar {
+  width: 100%;
+  height: auto;
+}
+.logo-navbar {
+  width: 190px;
+  margin: 15px;
+}
+.horizontale-menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  list-style-type: none;
+  color: white;
+  margin: 0;
+  font-size: 25px;
+}
