@@ -1,22 +1,32 @@
+import User from "../Classes/User";
+
 // Fausse données pour tester l'intégration des différentes recharts
-export function dataMocked() {
-  return [
-    {
-      id: 12,
-      userInfos: {
-        firstName: "Karl",
-        lastName: "Dovineau",
-        age: 31,
-      },
-      todayScore: 0.12,
-      keyData: {
-        calorieCount: 1930,
-        proteinCount: 155,
-        carbohydrateCount: 290,
-        lipidCount: 50,
-      },
-    },
-  ];
+export async function dataMocked(userId: number) {
+  // console.log("début");
+
+  return new Promise<User>((resolve, reject) => {
+    setTimeout(() => {
+      // console.log("test2");
+
+      resolve({
+        id: 12,
+        userInfos: {
+          firstName: "Karl",
+          lastName: "Dovineau",
+          age: 31,
+        },
+        todayScore: 0.12,
+        keyData: {
+          calorieCount: 1930,
+          proteinCount: 155,
+          carbohydrateCount: 290,
+          lipidCount: 50,
+        },
+      });
+    }, 500);
+  }).then((userDatas: any) => {
+    return new User(userDatas);
+  });
 }
 
 export function userActivityMocked() {
@@ -175,7 +185,7 @@ export function userAverageSessionsMocked() {
   ];
 }
 
-export function userPerformanceMocked() {
+export function userPerformance() {
   return [
     {
       userId: 12,

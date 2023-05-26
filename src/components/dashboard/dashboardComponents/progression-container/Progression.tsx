@@ -1,17 +1,17 @@
 import React from "react";
 
-import {
-  dataMocked,
-  userActivityMocked,
-  userAverageSessionsMocked,
-  userPerformanceMocked,
-} from "../../../../Api/datamocked";
+// import {
+  // dataMocked,
+  // userActivityMocked,
+  // userAverageSessionsMocked,
+  // userPerformanceMocked,
+// } from "../../../../Api/datamocked";
 
 // import de fausse données pour tester l'intégration des différentes recharts
-const data = dataMocked();
-const userActivity = userActivityMocked();
-const userAverageSessions = userAverageSessionsMocked();
-const userPerformance = userPerformanceMocked();
+// const data = dataMocked();
+// const userActivity = userActivityMocked();
+// const userAverageSessions = userAverageSessionsMocked();
+// const userPerformance = userPerformanceMocked();
 
 function Progression() {
   return (

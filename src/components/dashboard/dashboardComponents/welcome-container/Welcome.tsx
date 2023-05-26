@@ -1,20 +1,19 @@
 import React from "react";
 import "./style.scss";
 import {
-  dataMocked,
+  // dataMocked,
   userActivityMocked,
   userAverageSessionsMocked,
-  userPerformanceMocked,
+  // userPerformanceMocked,
 } from "../../../../Api/datamocked";
+import User from "../../../../Classes/User";
 
-const data = dataMocked();
 const userActivity = userActivityMocked();
 const userAverageSessions = userAverageSessionsMocked();
-const userPerformance = userPerformanceMocked();
+// const userPerformance = userPerformanceMocked();
 
-function Welcome() {
-  const userData = data.find((item) => item.id === 12);
-  const firstName = userData?.userInfos?.firstName; // Vérification de nullité avec l'opérateur "?"
+function Welcome({ user }: { user: User }) {
+  const firstName = user.userInfos.firstName; // Vérification de nullité avec l'opérateur "?"
 
   return (
     <article className="welcome-container">
