@@ -1,0 +1,37 @@
+// Parent
+.dashboard {
+  display: flex;
+  width: 100%;
+  border: 1px solid red;
+  flex-direction: row;
+}
+// dashboard principale
+.dashboard-principal {
+  display: flex;
+  width: 80%;
+  border: 1px solid red;
+  flex-direction: column;
+}
+
+.welcome-container {
+  border: 1px solid yellow;
+}
+
+.activities-container {
+  border: 1px solid orangered;
+}
+
+.progression-container {
+  border: 1px solid green;
+}
+// dashboard-aside
+.dashboard-aside {
+  display: flex;
+  width: 20%;
+  height: 100%;
+  border: 1px solid red;
+  flex-direction: column;
+}
+.nutrition-container {
+  border: 1px solid blue;
+}
