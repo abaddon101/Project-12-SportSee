@@ -12,11 +12,17 @@ export default class User {
     carbohydrateCount: number;
     lipidCount: number;
   };
+  
   constructor(datas: any) {
     this.id = datas.id;
+    console.log(datas.id);
+    
     this.userInfos = datas.userInfos;
     this.todayScore = datas.todayScore;
     this.keyData = datas.keyData;
     console.log("test");
   }
 }
+
+
+

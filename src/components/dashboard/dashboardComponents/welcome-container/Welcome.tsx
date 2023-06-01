@@ -1,14 +1,9 @@
 import React from "react";
 import "./style.scss";
-import {
-  // dataMocked,
-  userActivityMocked,
-  userAverageSessionsMocked,
-  // userPerformanceMocked,
-} from "../../../../Api/datamocked";
+import { userAverageSessionsMocked } from "../../../../Api/datamocked";
 import User from "../../../../Classes/User";
 
-const userActivity = userActivityMocked();
+// const userActivity = userActivityMocked();
 const userAverageSessions = userAverageSessionsMocked();
 // const userPerformance = userPerformanceMocked();
 

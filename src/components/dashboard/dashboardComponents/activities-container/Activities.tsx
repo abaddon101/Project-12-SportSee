@@ -8,9 +8,7 @@ import {
   Bar,
   Legend,
 } from "recharts";
-import { userActivityMocked } from "../../../../Api/datamocked";
-
-const userActivity = userActivityMocked();
+import UserActivities from "../../../../Classes/UserActivities";
 
 function formatDay(dateString: string) {
   const date = new Date(dateString);
@@ -18,16 +16,13 @@ function formatDay(dateString: string) {
   return day.toString();
 }
 
-function Activities() {
+function Activities({ userActivities }: { userActivities: UserActivities }) {
   return (
     <article className="activities-container">
       <h2>Activité quotidienne</h2>
-      <BarChart width={500} height={300} data={userActivity[0].sessions}>
+      <BarChart width={500} height={300} data={userActivities.sessions}>
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis
-          dataKey="day"
-          tickFormatter={formatDay} // Utilisation du formateur de tick
-        />
+        <XAxis dataKey="day" tickFormatter={formatDay} />
         <YAxis yAxisId="left" orientation="left" stroke="#000000" />
         <YAxis
           yAxisId="right"
@@ -35,7 +30,6 @@ function Activities() {
           stroke="#ff0000"
           label={{ value: "kg", angle: -90, position: "insideRight" }}
           domain={[70, 80]}
-          // tickFormatter={(value) => (value >= 0 && value <= 80 ? value : "")}
         />
         <Tooltip />
         <Bar
