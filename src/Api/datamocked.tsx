@@ -11,25 +11,62 @@ export async function dataMocked(userId: number) {
   return new Promise<User>((resolve, reject) => {
     // setTimeOut simule une attente de 500ms avant de résoudre la promesse
     setTimeout(() => {
+      const usersDatas = {
+        12: {
+          id: 12,
+          userInfos: {
+            firstName: "Karl",
+            lastName: "Dovineau",
+            age: 31,
+          },
+          todayScore: 0.12,
+          keyData: {
+            calorieCount: 1930,
+            proteinCount: 155,
+            carbohydrateCount: 290,
+            lipidCount: 50,
+          },
+        },
+        18: {
+          id: 18,
+          userInfos: {
+            firstName: "Cecilia",
+            lastName: "Ratorez",
+            age: 34,
+          },
+          score: 0.3,
+          keyData: {
+            calorieCount: 2500,
+            proteinCount: 90,
+            carbohydrateCount: 150,
+            lipidCount: 120,
+          },
+        },
+      } as any;
+      if (usersDatas[userId]) {
+        resolve(usersDatas[userId]);
+      } else {
+        reject("erreur");
+      }
       // console.log("test2");
       // apelle la fonction resolve pour résoudre la promesse avec un objet qui représente les données
       // d'un utilisateur. Cet objet contient des propriétés tel que 'id', 'userInfos', 'todayScore' et 'keyData'
       // avec des valeurs spécifiques pour chaque propriété
-      resolve({
-        id: 12,
-        userInfos: {
-          firstName: "Karl",
-          lastName: "Dovineau",
-          age: 31,
-        },
-        todayScore: 0.12,
-        keyData: {
-          calorieCount: 1930,
-          proteinCount: 155,
-          carbohydrateCount: 290,
-          lipidCount: 50,
-        },
-      });
+      // resolve({
+      //   id: 12,
+      //   userInfos: {
+      //     firstName: "Karl",
+      //     lastName: "Dovineau",
+      //     age: 31,
+      //   },
+      //   todayScore: 0.12,
+      //   keyData: {
+      //     calorieCount: 1930,
+      //     proteinCount: 155,
+      //     carbohydrateCount: 290,
+      //     lipidCount: 50,
+      //   },
+      // });
     }, 500);
 
     // ajoute un gestionnaire de promise qui est exécuté quand la promesse est résolue avec succès
@@ -40,11 +77,21 @@ export async function dataMocked(userId: number) {
     return new User(userDatas);
   });
 }
-export async function userActivityMocked() {
+// export async function dataMockedFetched(userId: number) {
+//   // console.log("début");
+//   // crée une new promise qui est résolue avec un objet de type 'user'
+//   // elle prend en compte deux fonctions de rappel, resolve et reject
+//   fetch("").then((userDatas: any) => {
+//     // le return crée une nouvelle instance de classe 'user' en utilisant les données de l'utilisateur résolue 'userDatas'
+//     // et la retourne
+//     return new User(userDatas);
+//   });
+// }
+export async function userActivityMocked(userId: number) {
   return new Promise<UserActivities>((resolve, reject) => {
     setTimeout(() => {
-      resolve(
-        new UserActivities({
+      const usersDatas = {
+        12: {
           userId: 12,
           sessions: [
             {
@@ -83,56 +130,99 @@ export async function userActivityMocked() {
               calories: 390,
             },
           ],
-        })
-      );
+        },
+        18: {
+          userId: 18,
+          sessions: [
+            {
+              day: "2020-07-01",
+              kilogram: 70,
+              calories: 240,
+            },
+            {
+              day: "2020-07-02",
+              kilogram: 69,
+              calories: 220,
+            },
+            {
+              day: "2020-07-03",
+              kilogram: 70,
+              calories: 280,
+            },
+            {
+              day: "2020-07-04",
+              kilogram: 70,
+              calories: 500,
+            },
+            {
+              day: "2020-07-05",
+              kilogram: 69,
+              calories: 160,
+            },
+            {
+              day: "2020-07-06",
+              kilogram: 69,
+              calories: 162,
+            },
+            {
+              day: "2020-07-07",
+              kilogram: 69,
+              calories: 390,
+            },
+          ],
+        },
+      } as any;
+      if (usersDatas[userId]) {
+        resolve(usersDatas[userId]);
+      } else {
+        reject("erreur");
+      }
     }, 500);
   });
 }
 
 export function userAverageSessionsMocked() {
-  return new Promise<UserProgression[]>((resolve, reject) => {
+  return new Promise<UserProgression>((resolve, reject) => {
     setTimeout(() => {
-      resolve([
-        {
-          userId: 12,
-          sessions: [
-            {
-              day: 1,
-              sessionLength: 30,
-            },
-            {
-              day: 2,
-              sessionLength: 23,
-            },
-            {
-              day: 3,
-              sessionLength: 45,
-            },
-            {
-              day: 4,
-              sessionLength: 50,
-            },
-            {
-              day: 5,
-              sessionLength: 0,
-            },
-            {
-              day: 6,
-              sessionLength: 0,
-            },
-            {
-              day: 7,
-              sessionLength: 60,
-            },
-          ],
-        },
-      ]);
+      resolve({
+        userId: 12,
+        sessions: [
+          {
+            day: 1,
+            sessionLength: 30,
+          },
+          {
+            day: 2,
+            sessionLength: 23,
+          },
+          {
+            day: 3,
+            sessionLength: 45,
+          },
+          {
+            day: 4,
+            sessionLength: 50,
+          },
+          {
+            day: 5,
+            sessionLength: 0,
+          },
+          {
+            day: 6,
+            sessionLength: 0,
+          },
+          {
+            day: 7,
+            sessionLength: 60,
+          },
+        ],
+      });
     }, 500);
   });
 }
 
 export function userPerformanceMocked() {
-  return new Promise((resolve) => {
+  return new Promise<UserPerformance>((resolve) => {
     setTimeout(() => {
       const performanceData: UserPerformance | null = new UserPerformance(
         12,

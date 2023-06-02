@@ -18,33 +18,29 @@ import UserProgression from "../../../../Classes/UserProgression";
 import UserPerformance from "../../../../Classes/UserPerformance";
 
 function Dashboard() {
+  const userId = 18;
   //useState
   const [user, setUser] = useState<User | null>(null);
 
   const [userActivities, setUserActivities] = useState<UserActivities | null>(
     null
   );
-  const [userProgression, setUserProgression] = useState<
-    UserProgression[] | null
-  >(null);
+  const [userProgression, setUserProgression] =
+    useState<UserProgression | null>(null);
 
   const [userPerformance, setUserPerformance] =
     useState<UserPerformance | null>(null);
-
   // useEffect
   useEffect(() => {
-    dataMocked(12).then((user: User) => {
+    dataMocked(userId).then((user: User) => {
       setUser(user);
     });
-
-    userActivityMocked().then((userActivities: UserActivities) => {
+    userActivityMocked(userId).then((userActivities: UserActivities) => {
       setUserActivities(userActivities);
     });
-
-    userAverageSessionsMocked().then((userProgression: UserProgression[]) => {
+    userAverageSessionsMocked().then((userProgression: UserProgression) => {
       setUserProgression(userProgression);
     });
-
     userPerformanceMocked().then((performanceData: unknown) => {
       if (performanceData !== null && typeof performanceData === "object") {
         setUserPerformance(performanceData as UserPerformance);
@@ -61,9 +57,9 @@ function Dashboard() {
         )}
         <div className="progression-containers">
           {userProgression != null && (
-            <Average userProgression={userProgression[0]} />
+            <Average userProgression={userProgression} />
           )}
-          {userPerformance && <Spider data={userPerformance.data} />}
+          {userPerformance != null && <Spider data={userPerformance.data} />}
           <Score />
         </div>
       </section>
