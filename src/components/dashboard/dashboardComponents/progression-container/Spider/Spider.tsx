@@ -15,7 +15,7 @@ interface SpiderProps {
 const Spider: React.FC<SpiderProps> = ({ data }) => {
   return (
     <article className="spider-container">
-      <ResponsiveContainer width="100%" height={400}>
+      <ResponsiveContainer width={400} height={400}>
         <RadarChart outerRadius={150} data={data}>
           <PolarGrid />
           <PolarAngleAxis dataKey="kind" />
