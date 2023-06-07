@@ -1,4 +1,5 @@
 import React from "react";
+import "./style.scss";
 import {
   BarChart,
   XAxis,
@@ -20,7 +21,7 @@ function Activities({ userActivities }: { userActivities: UserActivities }) {
   return (
     <article className="activities-container">
       <h2>Activité quotidienne</h2>
-      <BarChart width={500} height={300} data={userActivities.sessions}>
+      <BarChart width={1000} height={300} data={userActivities.sessions}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="day" tickFormatter={formatDay} />
         <YAxis yAxisId="left" orientation="left" stroke="#000000" />

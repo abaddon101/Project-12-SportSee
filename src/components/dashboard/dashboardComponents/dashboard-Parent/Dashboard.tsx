@@ -4,6 +4,10 @@ import Activities from "../activities-container/Activities";
 import Average from "../progression-container/average-duration-session/Average";
 import Spider from "../progression-container/Spider/Spider";
 import Score from "../progression-container/Score/Score";
+import Calories from "../nutrition-container/Calories";
+import Proteines from "../nutrition-container/Proteines";
+import Glucides from "../nutrition-container/Glucides";
+import Lipides from "../nutrition-container/Lipides";
 
 import "./style.scss";
 import {
@@ -19,17 +23,16 @@ import UserPerformance from "../../../../Classes/UserPerformance";
 
 function Dashboard() {
   const userId = 18;
-  //useState
+  // useState
   const [user, setUser] = useState<User | null>(null);
-
   const [userActivities, setUserActivities] = useState<UserActivities | null>(
     null
   );
   const [userProgression, setUserProgression] =
     useState<UserProgression | null>(null);
-
   const [userPerformance, setUserPerformance] =
     useState<UserPerformance | null>(null);
+
   // useEffect
   useEffect(() => {
     dataMocked(userId).then((user: User) => {
@@ -55,14 +58,21 @@ function Dashboard() {
         {userActivities != null && (
           <Activities userActivities={userActivities} />
         )}
-        <div className="progression-containers">
+        <div className="progression-container">
           {userProgression != null && (
             <Average userProgression={userProgression} />
           )}
           {userPerformance != null && <Spider data={userPerformance.data} />}
-          <Score />
+
+          {user != null && <Score user={user} />}
         </div>
       </section>
+      <aside>
+        {user != null && <Calories user={user} />}
+        {user != null && <Proteines user={user} />}
+        {user != null && <Glucides user={user} />}
+        {user != null && <Lipides user={user} />}
+      </aside>
     </div>
   );
 }

@@ -1,10 +1,10 @@
 import React from "react";
 import "./style.scss";
-import { userAverageSessionsMocked } from "../../../../Api/datamocked";
+// import { userAverageSessionsMocked } from "../../../../Api/datamocked";
 import User from "../../../../Classes/User";
 
 // const userActivity = userActivityMocked();
-const userAverageSessions = userAverageSessionsMocked();
+// const userAverageSessions = userAverageSessionsMocked();
 // const userPerformance = userPerformanceMocked();
 
 function Welcome({ user }: { user: User }) {

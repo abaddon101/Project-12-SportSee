@@ -23,6 +23,17 @@
 
 .progression-container {
   border: 1px solid green;
+  display: flex;
+  justify-content: space-between;
+  // article {
+  //   width: 30%;
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  //   flex-direction: column;
+  //   border: 1px solid black;
+  //   border-radius: 15px;
+  // }
 }
 // dashboard-aside
 .dashboard-aside {

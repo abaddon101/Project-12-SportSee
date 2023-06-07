@@ -14,7 +14,7 @@ function Average({ userProgression }: { userProgression: UserProgression }) {
   return (
     <article className="average-container">
       <h2>Progression moyenne</h2>
-      <LineChart width={500} height={300} data={userProgression.sessions}>
+      <LineChart width={300} height={300} data={userProgression.sessions}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="day" />
         <YAxis />
