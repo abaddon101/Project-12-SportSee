@@ -4,11 +4,10 @@ import {
   BarChart,
   XAxis,
   YAxis,
-  CartesianGrid,
   Tooltip,
   Bar,
   Legend,
-  CartesianAxis,
+  CartesianGrid,
 } from "recharts";
 import UserActivities from "../../../../Classes/UserActivities";
 
@@ -44,10 +43,14 @@ function CustomTooltip({ active, payload }: any) {
 
 function Activities({ userActivities }: { userActivities: UserActivities }) {
   return (
-    <article className="activities-container" >
-      <h2>Activité quotidienne</h2>
+    <article className="activities-container">
       <BarChart width={1000} height={300} data={userActivities.sessions}>
-        <CartesianGrid strokeDasharray="3 3" />
+        <CartesianGrid
+          stroke="#dddddd"
+          strokeDasharray="3 3"
+          horizontal={true}
+          vertical={false}
+        />
         <XAxis dataKey="day" tickFormatter={formatDay} />
         <YAxis yAxisId="left" orientation="left" hide />
         <YAxis
@@ -56,7 +59,7 @@ function Activities({ userActivities }: { userActivities: UserActivities }) {
           axisLine={false}
           tickLine={false}
           stroke="#ff0000"
-          tickFormatter={formatCalories} // Utiliser formatCalories pour formater les valeurs des calories brûlées
+          tickFormatter={formatCalories}
         />
         <Tooltip content={<CustomTooltip />} />
         <Bar
@@ -73,10 +76,14 @@ function Activities({ userActivities }: { userActivities: UserActivities }) {
           radius={5}
           barSize={6}
         />
+        <text x={100} y={20} textAnchor="start">
+          Activité quotidienne
+        </text>
         <Legend
           verticalAlign="top"
           align="right"
           iconType="circle"
+          className="chart-legend"
           formatter={(label: string) => {
             if (label === "kilogram") {
               return "Poids (kg)";
