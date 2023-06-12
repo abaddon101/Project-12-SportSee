@@ -4,7 +4,13 @@
   width: 100%;
   border: 1px solid red;
   flex-direction: row;
+  &.blurred {
+    // Styles du dashboard flouté
+    filter: blur(1px);
+    pointer-events: none;
+  }
 }
+
 // dashboard principale
 .dashboard-principal {
   display: flex;

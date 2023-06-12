@@ -1,13 +1,18 @@
 import React from "react";
+import Dashboard from "../components/dashboard/dashboardComponents/dashboard-Parent/Dashboard";
 import Nav from "../components/nav/nav";
-import Main from "../components/main/Main";
+import SideBar from "../components/sidebar/sidebar";
+
 import "./home.scss";
 
 function Home() {
   return (
     <div>
       <Nav />
-      <Main />
+      <div id="main">
+        <SideBar />
+        <Dashboard />
+      </div>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Welcome from "../welcome-container/Welcome";
 import Activities from "../activities-container/Activities";
 import Average from "../progression-container/average-duration-session/Average";
@@ -22,7 +23,8 @@ import UserProgression from "../../../../Classes/UserProgression";
 import UserPerformance from "../../../../Classes/UserPerformance";
 
 function Dashboard() {
-  const userId = 18;
+  const { id } = useParams<{ id?: string }>();
+
   // useState
   const [user, setUser] = useState<User | null>(null);
   const [userActivities, setUserActivities] = useState<UserActivities | null>(
@@ -35,21 +37,24 @@ function Dashboard() {
 
   // useEffect
   useEffect(() => {
-    dataMocked(userId).then((user: User) => {
-      setUser(user);
-    });
-    userActivityMocked(userId).then((userActivities: UserActivities) => {
-      setUserActivities(userActivities);
-    });
-    userAverageSessionsMocked().then((userProgression: UserProgression) => {
-      setUserProgression(userProgression);
-    });
-    userPerformanceMocked().then((performanceData: unknown) => {
-      if (performanceData !== null && typeof performanceData === "object") {
-        setUserPerformance(performanceData as UserPerformance);
-      }
-    });
-  }, []);
+    if (id) {
+      const userId = parseInt(id);
+      dataMocked(userId).then((user: User) => {
+        setUser(user);
+      });
+      userActivityMocked(userId).then((userActivities: UserActivities) => {
+        setUserActivities(userActivities);
+      });
+      userAverageSessionsMocked().then((userProgression: UserProgression) => {
+        setUserProgression(userProgression);
+      });
+      userPerformanceMocked().then((performanceData: unknown) => {
+        if (performanceData !== null && typeof performanceData === "object") {
+          setUserPerformance(performanceData as UserPerformance);
+        }
+      });
+    }
+  }, [id]);
 
   return (
     <div className="dashboard">

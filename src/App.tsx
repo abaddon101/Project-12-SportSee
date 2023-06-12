@@ -1,12 +1,19 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./page/Home";
-import ".//styles/App.scss";
+import Dashboard from "./components/dashboard/dashboardComponents/dashboard-Parent/Dashboard";
+
 
 function App() {
   return (
-    <div className="App">
-      <Home />
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/dashboard/:id" element={<Home />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
