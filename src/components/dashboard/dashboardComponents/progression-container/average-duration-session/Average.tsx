@@ -8,6 +8,7 @@ import {
   Tooltip,
 } from "recharts";
 import UserProgression from "../../../../../Classes/UserProgression";
+import "./style.scss";
 
 function Average({ userProgression }: { userProgression: UserProgression }) {
   const dayOfWeek = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
@@ -30,7 +31,7 @@ function Average({ userProgression }: { userProgression: UserProgression }) {
 
   return (
     <article
-      className="average-container"
+      id="average-container"
       style={{
         background: "rgba(255, 0, 0, 1)",
         color: "white",

@@ -10,10 +10,43 @@
   display: flex;
   align-items: center;
 }
+.activities-container {
+  background-color: #e5e5e5;
+}
 .recharts-wrapper {
-  background-color: rgba(251, 251, 251, 1);
+  // background-color: #e5e5e5;
+  margin: 35px;
+  // width: 100%;
+}
+.header-barChart {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.legend-header {
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
 }
 
-.recharts-legend-wrapper {
-  padding-bottom: 55px;
+.legend-icon-black {
+  i.circle {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: black;
+    border-radius: 50%;
+    margin-right: 5px;
+  }
+}
+
+.legend-icon-red {
+  i.circle {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    margin-right: 5px;
+  }
 }

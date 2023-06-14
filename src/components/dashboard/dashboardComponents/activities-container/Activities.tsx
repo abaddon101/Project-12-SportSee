@@ -44,7 +44,7 @@ function CustomTooltip({ active, payload }: any) {
 function Activities({ userActivities }: { userActivities: UserActivities }) {
   return (
     <article className="activities-container">
-      <BarChart width={1000} height={300} data={userActivities.sessions}>
+      <BarChart width={1500} height={300} data={userActivities.sessions}>
         <CartesianGrid
           stroke="#dddddd"
           strokeDasharray="3 3"
@@ -76,23 +76,23 @@ function Activities({ userActivities }: { userActivities: UserActivities }) {
           radius={5}
           barSize={6}
         />
-        <text x={100} y={20} textAnchor="start">
-          Activité quotidienne
-        </text>
+
         <Legend
           verticalAlign="top"
-          align="right"
-          iconType="circle"
           className="chart-legend"
-          formatter={(label: string) => {
-            if (label === "kilogram") {
-              return "Poids (kg)";
-            } else if (label === "calories") {
-              return "Calories brûlées (Kcal)";
-            } else {
-              return label;
-            }
-          }}
+          content={() => (
+            <div className="header-barChart">
+              <h3>Activité quotidienne</h3>
+              <div className="legend-header">
+                <span className="legend-icon-black">
+                  <i className="circle"></i> Poids (kg)
+                </span>
+                <span className="legend-icon-red">
+                  <i className="circle"></i> Calories brûlées (Kcal)
+                </span>
+              </div>
+            </div>
+          )}
         />
       </BarChart>
     </article>

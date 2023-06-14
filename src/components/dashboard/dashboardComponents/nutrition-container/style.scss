@@ -1,0 +1,75 @@
+.nutrition-container {
+  height: 124px;
+  width: 258px;
+  border-radius: 5px;
+  display: flex;
+  background-color: #e5e5e5;
+}
+
+.calories-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  width: 100px;
+  left: 32px;
+  top: 32px;
+
+  .calories-icons {
+    border-radius: 5px;
+    width: 75px;
+    height: 75px;
+    background-color: rgb(233, 215, 215);
+  }
+}
+
+.proteines-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  width: 100px;
+  left: 32px;
+  top: 32px;
+
+  .proteines-icons {
+    border-radius: 5px;
+    width: 75px;
+    height: 75px;
+    background-color: rgb(237, 241, 255);
+  }
+}
+
+.glucides-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  width: 100px;
+  left: 32px;
+  top: 32px;
+
+  .glucides-icons {
+    border-radius: 5px;
+    width: 75px;
+    height: 75px;
+    background-color: rgb(250, 248, 219);
+  }
+}
+
+.lipides-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  width: 100px;
+  left: 32px;
+  top: 32px;
+
+  .lipides-icons {
+    border-radius: 5px;
+    width: 75px;
+    height: 75px;
+    background-color: rgb(233, 215, 215);
+  }
+}

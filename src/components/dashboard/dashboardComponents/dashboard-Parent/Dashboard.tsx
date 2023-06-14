@@ -72,7 +72,7 @@ function Dashboard() {
           {user != null && <Score user={user} />}
         </div>
       </section>
-      <aside>
+      <aside className="nutrition-aside-block">
         {user != null && <Calories user={user} />}
         {user != null && <Proteines user={user} />}
         {user != null && <Glucides user={user} />}
