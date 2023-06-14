@@ -21,30 +21,10 @@ function formatCalories(value: number) {
   return value.toString();
 }
 
-function CustomTooltip({ active, payload }: any) {
-  if (active && payload && payload.length) {
-    const filteredPayload = payload.filter(
-      (entry: any) =>
-        entry.dataKey === "kilogram" || entry.dataKey === "calories"
-    );
-    return (
-      <div className="custom-tooltip">
-        {filteredPayload.map((entry: any) => (
-          <p key={entry.dataKey}>
-            {entry.value} {entry.dataKey === "kilogram" ? "kg" : "Kcal"}
-          </p>
-        ))}
-      </div>
-    );
-  }
-
-  return null;
-}
-
 function Activities({ userActivities }: { userActivities: UserActivities }) {
   return (
     <article className="activities-container">
-      <BarChart width={1500} height={300} data={userActivities.sessions}>
+      <BarChart width={800} height={300} data={userActivities.sessions}>
         <CartesianGrid
           stroke="#dddddd"
           strokeDasharray="3 3"
@@ -61,7 +41,9 @@ function Activities({ userActivities }: { userActivities: UserActivities }) {
           stroke="#ff0000"
           tickFormatter={formatCalories}
         />
-        <Tooltip content={<CustomTooltip />} />
+        <Tooltip
+          itemStyle={{ width: "10px" }} // Modifier la valeur de width selon vos besoins
+        />
         <Bar
           dataKey="kilogram"
           fill="#000000"
@@ -80,6 +62,7 @@ function Activities({ userActivities }: { userActivities: UserActivities }) {
         <Legend
           verticalAlign="top"
           className="chart-legend"
+          width={800}
           content={() => (
             <div className="header-barChart">
               <h3>Activité quotidienne</h3>

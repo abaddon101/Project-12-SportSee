@@ -1,7 +1,3 @@
-// .activities-container {
-//   background-color: aqua;
-//   width: 100%;
-// }
 .custom-tooltip {
   background-color: red;
   color: white;
@@ -12,21 +8,21 @@
 }
 .activities-container {
   background-color: #e5e5e5;
+  margin: 20px;
 }
 .recharts-wrapper {
-  // background-color: #e5e5e5;
-  margin: 35px;
-  // width: 100%;
+  margin: 20px;
 }
 .header-barChart {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
 }
 .legend-header {
   display: flex;
   justify-content: space-between;
-  width: 300px;
+  
 }
 
 .legend-icon-black {
