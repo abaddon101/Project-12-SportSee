@@ -24,7 +24,7 @@ function formatCalories(value: number) {
 function Activities({ userActivities }: { userActivities: UserActivities }) {
   return (
     <article className="activities-container">
-      <BarChart width={800} height={300} data={userActivities.sessions}>
+      <BarChart width={800} height={250} data={userActivities.sessions}>
         <CartesianGrid
           stroke="#dddddd"
           strokeDasharray="3 3"
