@@ -14,8 +14,8 @@ function Average({ userProgression }: { userProgression: UserProgression }) {
   const formatDayOfWeek = (value: number) => {
     const daysOfWeek = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
     const adjustedValue = (value - 1 + daysOfWeek.length) % daysOfWeek.length;
-    console.log("Value:", value, "Adjusted Index:", adjustedValue);
-    console.log(userProgression.sessions);
+    // console.log("Value:", value, "Adjusted Index:", adjustedValue);
+    // console.log(userProgression.sessions);
     return daysOfWeek[adjustedValue];
   };
 

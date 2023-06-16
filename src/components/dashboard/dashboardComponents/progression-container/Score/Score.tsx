@@ -1,37 +1,67 @@
 import React from "react";
-import { RadialBarChart, RadialBar, Legend, Tooltip } from "recharts";
+import { RadialBarChart, RadialBar, Legend } from "recharts";
 import User from "../../../../../Classes/User";
+import "./style.scss";
 
 function Score({ user }: { user: User }) {
-  const data = [
-    {
-      name: "Score",
-      value: user.todayScore,
-    },
-  ];
+  const todayScore = Math.round(user.todayScore * 100);
+  const data = [{ name: "Score", value: todayScore }];
+
+  const remainingPercentage = 100 - todayScore;
+  const remainingData = [{ name: "Empty", value: remainingPercentage }];
+
+  const innerRadius = `${100 - todayScore}%`;
+  const outerRadius = "100%";
+
+  const scoreBarStyles = {
+    fill: "#e60000", // Couleur rouge pour la barre "Score"
+    barSize: 20 // Augmente la largeur de la barre de score
+  };
+
+  const emptyBarStyles = {
+    fill: "transparent" // Couleur transparente pour la barre "Empty"
+  };
 
   return (
     <article className="score-container">
-      <h2>Score: {user.todayScore}</h2>
       <RadialBarChart
         width={300}
         height={300}
         cx={150}
         cy={150}
-        innerRadius={30}
-        outerRadius={140}
-        barSize={10}
+        innerRadius={innerRadius}
+        outerRadius={outerRadius}
+        startAngle={90}
+        endAngle={-270}
         data={data}
       >
-        <RadialBar background dataKey="value" />
+        <RadialBar
+          dataKey="value"
+          background
+          {...scoreBarStyles}
+        />
+
+        {remainingPercentage > 0 && (
+          <RadialBar
+            dataKey="value"
+            fill={emptyBarStyles.fill}
+            data={remainingData}
+            background
+          />
+        )}
+
         <Legend
           iconSize={10}
           layout="vertical"
           verticalAlign="middle"
           align="right"
+          wrapperStyle={{ top: "40%", right: "20px" }}
         />
-        <Tooltip />
       </RadialBarChart>
+      <div className="score-label-container">
+        <h2 className="score-label">{todayScore}%</h2>
+        <p className="score-label-text">De votre objectif</p>
+      </div>
     </article>
   );
 }
