@@ -1,65 +1,72 @@
 .score-container {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 300px;
-    height: 300px;
-    background: rgba(251, 251, 251, 1);
-  
-    .score-label-container {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-    }
-  
-    .score-label {
-      font-size: 32px;
-      font-weight: bold;
-      color: #e60000;
-      margin: 0;
-    }
-  
-    .score-label-text {
-      font-size: 14px;
-      color: #666666;
-      margin: 0;
-    }
-  
-    .recharts-radial-bar-foreground {
-      fill: #e60000; /* Couleur rouge pour la barre "Score" */
-      stroke: none;
-    }
-  
-    .recharts-radial-bar-background {
-      fill: #cccccc; /* Couleur grise pour la barre "Empty" */
-      stroke: none;
-    }
-  
-    .recharts-radial-bar-background,
-    .recharts-radial-bar-foreground {
-      position: absolute;
-      top: 0;
-      left: 0;
-      transform-origin: center center;
-    }
-  
-    .recharts-radial-bar-foreground {
-      transform: rotate(-90deg);
-    }
-  
-    .recharts-radial-bar-background {
-      transform: rotate(-90deg);
-      opacity: 0.3;
-    }
-  
-    .recharts-legend-wrapper {
-      text-align: right;
-      margin-right: 20px;
-      margin-top: 40%;
-    }
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 300px;
+  background: rgba(251, 251, 251, 1);
+
+  .score-label-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
   }
-  
+  .score-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .score-label {
+    font-size: 32px;
+    font-weight: bold;
+    color: #e60000;
+    margin: 0;
+  }
+
+  .score-label-text {
+    font-size: 14px;
+    color: #666666;
+    margin: 0;
+  }
+
+  .recharts-radial-bar-foreground {
+    fill: #e60000; /* Couleur rouge pour la barre "Score" */
+    stroke: none;
+  }
+
+  .recharts-radial-bar-background {
+    fill: #cccccc; /* Couleur grise pour la barre "Empty" */
+    stroke: none;
+  }
+
+  .recharts-radial-bar-background,
+  .recharts-radial-bar-foreground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: center center;
+  }
+
+  .recharts-radial-bar-foreground {
+    transform: rotate(-90deg);
+  }
+
+  .recharts-radial-bar-background {
+    transform: rotate(-90deg);
+    opacity: 0.3;
+  }
+
+  .recharts-legend-wrapper {
+    display: none;
+  }
+
+//   .recharts-legend-item-text {
+//     display: none;
+//     list-style-type: none;
+//   }
+}
