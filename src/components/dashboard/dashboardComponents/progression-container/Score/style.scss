@@ -4,9 +4,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 300px;
-  height: 300px;
+  width: 400px;
+  height: 400px;
   background: rgba(251, 251, 251, 1);
+  .score-container-title {
+    position: absolute;
+    top: 0px;
+    left: 15px;
+  }
 
   .score-label-container {
     position: absolute;
@@ -24,14 +29,15 @@
   .score-label {
     font-size: 32px;
     font-weight: bold;
-    color: #e60000;
+    color: black;
     margin: 0;
   }
 
   .score-label-text {
-    font-size: 14px;
+    font-size: 25px;
     color: #666666;
     margin: 0;
+
   }
 
   .recharts-radial-bar-foreground {
@@ -65,8 +71,8 @@
     display: none;
   }
 
-//   .recharts-legend-item-text {
-//     display: none;
-//     list-style-type: none;
-//   }
+  //   .recharts-legend-item-text {
+  //     display: none;
+  //     list-style-type: none;
+  //   }
 }

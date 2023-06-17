@@ -15,15 +15,17 @@ function Score({ user }: { user: User }) {
 
   const scoreBarStyles = {
     fill: "#e60000", // Couleur rouge pour la barre "Score"
-    barSize: 20 // Augmente la largeur de la barre de score
+    barSize: 20, // Augmente la largeur de la barre de score
+    cornerRadius: 10, // Ajoutez cette propriété pour définir le rayon des coins
   };
 
   const emptyBarStyles = {
-    fill: "transparent" // Couleur transparente pour la barre "Empty"
+    fill: "transparent", // Couleur transparente pour la barre "Empty"
   };
 
   return (
     <article className="score-container">
+      <h2 className="score-container-title">Score</h2>
       <RadialBarChart
         width={300}
         height={300}
@@ -31,15 +33,11 @@ function Score({ user }: { user: User }) {
         cy={150}
         innerRadius={innerRadius}
         outerRadius={outerRadius}
-        startAngle={90}
-        endAngle={-270}
+        startAngle={180}
+        endAngle={-180}
         data={data}
       >
-        <RadialBar
-          dataKey="value"
-          background
-          {...scoreBarStyles}
-        />
+        <RadialBar dataKey="value" background {...scoreBarStyles} />
 
         {remainingPercentage > 0 && (
           <RadialBar
@@ -60,7 +58,7 @@ function Score({ user }: { user: User }) {
       </RadialBarChart>
       <div className="score-label-container">
         <h2 className="score-label">{todayScore}%</h2>
-        <p className="score-label-text">De votre objectif</p>
+        <p className="score-label-text">de votre objectif</p>
       </div>
     </article>
   );
