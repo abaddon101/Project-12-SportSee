@@ -1,7 +1,16 @@
+.spider-container {
+  width: 300px;
+  height: 300px;
+  background-color: rgba(40, 45, 48, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border-radius: 5px;
+}
+
 .recharts-polar-radius-axis-tick-value {
   display: none;
 }
-.spider-container {
-  width: 400px;
-  height: 400px;
-}
+
+// Ajoutez d'autres styles spécifiques au besoin

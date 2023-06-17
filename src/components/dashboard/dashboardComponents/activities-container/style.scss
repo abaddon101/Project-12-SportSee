@@ -1,3 +1,13 @@
+.activities-container {
+  background-color: #e5e5e5;
+  padding: 20px;
+  width: 95%;
+  height: 300px;
+  border-radius: 5px;
+  display: flex;
+  margin: 20px 0px 0px 20px;
+  align-self: center;
+}
 .custom-tooltip {
   background-color: red;
   color: white;
@@ -6,14 +16,7 @@
   display: flex;
   align-items: center;
 }
-.activities-container {
-  background-color: #e5e5e5;
-  margin: 20px;
-  width: 85%;
-}
-.recharts-wrapper {
-  margin: 20px;
-}
+
 .header-barChart {
   display: flex;
   align-items: center;

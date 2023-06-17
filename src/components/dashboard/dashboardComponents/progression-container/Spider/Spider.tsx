@@ -16,27 +16,24 @@ interface SpiderProps {
 
 const Spider: React.FC<SpiderProps> = ({ data }) => {
   const kindLabels: { [key: number]: string } = {
-    1: "cardio",
-    2: "energy",
-    3: "endurance",
-    4: "strength",
-    5: "speed",
-    6: "intensity",
+    1: "Cardio",
+    2: "Energie",
+    3: "Endurance",
+    4: "Force",
+    5: "Vitesse",
+    6: "Intensité",
   };
 
   return (
-    <article
-      className="spider-container"
-      style={{ backgroundColor: "rgba(40, 45, 48, 1)" }}
-    >
-      <ResponsiveContainer width={400} height={400}>
-        <RadarChart outerRadius={150} data={data}>
-          <PolarGrid  />
+    <article className="spider-container">
+      <ResponsiveContainer width="100%" height="100%">
+        <RadarChart outerRadius={90} data={data}>
+          <PolarGrid />
           <PolarAngleAxis
             dataKey="kind"
             stroke="rgba(255, 255, 255, 1)"
             tick={{ fill: "rgba(255, 255, 255, 1)" }}
-            tickFormatter={(value) => kindLabels[value] }
+            tickFormatter={(value) => kindLabels[value]}
           />
           <PolarRadiusAxis angle={30} domain={[0, 200]} />
           <Radar

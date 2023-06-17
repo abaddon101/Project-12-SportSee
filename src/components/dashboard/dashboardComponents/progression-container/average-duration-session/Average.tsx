@@ -6,16 +6,16 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
+  ResponsiveContainer,
 } from "recharts";
 import UserProgression from "../../../../../Classes/UserProgression";
 import "./style.scss";
 
 function Average({ userProgression }: { userProgression: UserProgression }) {
   const formatDayOfWeek = (value: number) => {
-    const daysOfWeek = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
-    const adjustedValue = (value - 1 + daysOfWeek.length) % daysOfWeek.length;
-    // console.log("Value:", value, "Adjusted Index:", adjustedValue);
-    // console.log(userProgression.sessions);
+    const daysOfWeek = ["D", "L", "M", "M", "J", "V", "S"];
+    const adjustedValue = value % daysOfWeek.length;
+
     return daysOfWeek[adjustedValue];
   };
 
@@ -32,32 +32,31 @@ function Average({ userProgression }: { userProgression: UserProgression }) {
   };
 
   return (
-    <article
-      id="average-container"
-      style={{
-        background: "rgba(255, 0, 0, 1)",
-        color: "white",
-      }}
-    >
-      <h2>Progression moyenne</h2>
-      <LineChart width={400} height={150} data={userProgression.sessions}>
-        <CartesianGrid strokeDasharray="3 3" display="none" />
-        <XAxis
-          dataKey="day"
-          axisLine={false}
-          tickLine={false}
-          tickFormatter={formatDayOfWeek}
-        />
-        <YAxis hide={true} />
-        <Tooltip content={renderTooltipContent} />
-        <Line
-          type="monotone"
-          dataKey="sessionLength"
-          stroke="white"
-          strokeWidth={1}
-          activeDot={{ r: 8 }}
-        />
-      </LineChart>
+    <article className="average-container">
+      <h3 className="average-container-title">Durée moyenne des sessions</h3>
+      <ResponsiveContainer width="100%" height="100%">
+        <LineChart data={userProgression.sessions} className="chart-container">
+          <CartesianGrid strokeDasharray="1 3" />
+          <XAxis
+            dataKey="day"
+            stroke="rgba(255, 255, 255, 1)"
+            axisLine={false}
+            tickLine={false}
+            tickFormatter={formatDayOfWeek}
+            interval="preserveStartEnd"
+            dy={15}
+          />
+          <YAxis hide={true} />
+          <Tooltip content={renderTooltipContent} />
+          <Line
+            type="monotone"
+            dataKey="sessionLength"
+            stroke="rgba(255, 255, 255, 1)"
+            strokeWidth={3}
+            activeDot={{ r: 8 }}
+          />
+        </LineChart>
+      </ResponsiveContainer>
     </article>
   );
 }

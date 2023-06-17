@@ -1,5 +1,10 @@
 import React from "react";
-import { RadialBarChart, RadialBar, Legend } from "recharts";
+import {
+  RadialBarChart,
+  RadialBar,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 import User from "../../../../../Classes/User";
 import "./style.scss";
 
@@ -26,36 +31,36 @@ function Score({ user }: { user: User }) {
   return (
     <article className="score-container">
       <h2 className="score-container-title">Score</h2>
-      <RadialBarChart
-        width={300}
-        height={300}
-        cx={150}
-        cy={150}
-        innerRadius={innerRadius}
-        outerRadius={outerRadius}
-        startAngle={180}
-        endAngle={-180}
-        data={data}
-      >
-        <RadialBar dataKey="value" background {...scoreBarStyles} />
+      <ResponsiveContainer width={250} height={250}>
+        <RadialBarChart
+          cx="50%"
+          cy="50%"
+          innerRadius={innerRadius}
+          outerRadius={outerRadius}
+          startAngle={180}
+          endAngle={-180}
+          data={data}
+        >
+          <RadialBar dataKey="value" background {...scoreBarStyles} />
 
-        {remainingPercentage > 0 && (
-          <RadialBar
-            dataKey="value"
-            fill={emptyBarStyles.fill}
-            data={remainingData}
-            background
+          {remainingPercentage > 0 && (
+            <RadialBar
+              dataKey="value"
+              fill={emptyBarStyles.fill}
+              data={remainingData}
+              background
+            />
+          )}
+
+          <Legend
+            iconSize={10}
+            layout="vertical"
+            verticalAlign="middle"
+            align="right"
+            wrapperStyle={{ top: "40%", right: "20px" }}
           />
-        )}
-
-        <Legend
-          iconSize={10}
-          layout="vertical"
-          verticalAlign="middle"
-          align="right"
-          wrapperStyle={{ top: "40%", right: "20px" }}
-        />
-      </RadialBarChart>
+        </RadialBarChart>
+      </ResponsiveContainer>
       <div className="score-label-container">
         <h2 className="score-label">{todayScore}%</h2>
         <p className="score-label-text">de votre objectif</p>

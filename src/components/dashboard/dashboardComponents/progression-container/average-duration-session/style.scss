@@ -1,7 +1,15 @@
-// #average-container {
-//   background-color: red;
-// }
-#average-container {
-  width: 400px;
-  height: 400px;
+.average-container {
+  background: rgba(255, 0, 0, 1);
+  color: white;
+  width: 300px;
+  height: 300px;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.average-container-title {
+  margin: 20px;
+  font-size: 10px;
+  width: 161px;
+  position: absolute;
 }
