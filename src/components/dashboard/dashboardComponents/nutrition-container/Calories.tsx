@@ -4,23 +4,25 @@ import calories from "../../../../assets/calories.png";
 import "./style.scss";
 
 function formatCalorieCount(calorieCount: number) {
-  const formattedCount = calorieCount.toLocaleString("en-US");
+  const formattedCount = calorieCount.toLocaleString("en-US"); // Formatage du nombre en utilisant la méthode toLocaleString pour afficher les virgules
   return formattedCount;
 }
 
 function Calories({ user }: { user: User }) {
-  const { calorieCount } = user.keyData;
+  const { calorieCount } = user.keyData; // Accès à la propriété calorieCount de l'objet user.keyData
 
-  const formattedCalorieCount = formatCalorieCount(calorieCount);
+  const formattedCalorieCount = formatCalorieCount(calorieCount); // Formatage du nombre de calories
 
   return (
     <div className="nutrition-container">
       <div className="calories-box">
-        <img className="calories-icons" src={calories} alt="Calories" />
+        <img className="calories-icons" src={calories} alt="Calories" />{" "}
+        {/* Affichage de l'icône des calories */}
       </div>
       <div className="calories">
-        <h2>{formattedCalorieCount} kCal</h2>
-        <p className="calories-label">Calories</p>
+        <h2>{formattedCalorieCount} kCal</h2>{" "}
+        {/* Affichage du nombre de calories formaté */}
+        <p className="calories-label">Calories</p> {/* Libellé "Calories" */}
       </div>
     </div>
   );

@@ -3,12 +3,8 @@ import "./style.scss";
 // import { userAverageSessionsMocked } from "../../../../Api/datamocked";
 import User from "../../../../Classes/User";
 
-// const userActivity = userActivityMocked();
-// const userAverageSessions = userAverageSessionsMocked();
-// const userPerformance = userPerformanceMocked();
-
 function Welcome({ user }: { user: User }) {
-  const firstName = user.userInfos.firstName; // Vérification de nullité avec l'opérateur "?"
+  const firstName = user.userInfos.firstName; // Accès à la propriété firstName de l'objet user.userInfos
 
   return (
     <article className="welcome-container">

@@ -4,6 +4,8 @@ import UserProgression from "../Classes/UserProgression";
 import UserPerformance from "../Classes/UserPerformance";
 
 // Fausse données pour tester l'intégration des différentes recharts
+// Fonction asynchrone qui simule la récupération des données d'un utilisateur en utilisant une promesse
+// La fonction prend un identifiant d'utilisateur en paramètre
 export async function dataMocked(userId: number) {
   // console.log("début");
   // crée une new promise qui est résolue avec un objet de type 'user'
@@ -11,6 +13,7 @@ export async function dataMocked(userId: number) {
   return new Promise<User>((resolve, reject) => {
     // setTimeOut simule une attente de 500ms avant de résoudre la promesse
     setTimeout(() => {
+      // Un objet contenant des données fictives d'utilisateurs
       const usersDatas = {
         12: {
           id: 12,
@@ -44,29 +47,13 @@ export async function dataMocked(userId: number) {
         },
       } as any;
       if (usersDatas[userId]) {
+        // Si l'identifiant d'utilisateur existe dans les données fictives, résoudre la promesse avec ces données
         resolve(usersDatas[userId]);
       } else {
+        // Sinon, rejeter la promesse avec un message d'erreur
         reject("erreur");
       }
       // console.log("test2");
-      // apelle la fonction resolve pour résoudre la promesse avec un objet qui représente les données
-      // d'un utilisateur. Cet objet contient des propriétés tel que 'id', 'userInfos', 'todayScore' et 'keyData'
-      // avec des valeurs spécifiques pour chaque propriété
-      // resolve({
-      //   id: 12,
-      //   userInfos: {
-      //     firstName: "Karl",
-      //     lastName: "Dovineau",
-      //     age: 31,
-      //   },
-      //   todayScore: 0.12,
-      //   keyData: {
-      //     calorieCount: 1930,
-      //     proteinCount: 155,
-      //     carbohydrateCount: 290,
-      //     lipidCount: 50,
-      //   },
-      // });
     }, 500);
 
     // ajoute un gestionnaire de promise qui est exécuté quand la promesse est résolue avec succès
@@ -77,19 +64,11 @@ export async function dataMocked(userId: number) {
     return new User(userDatas);
   });
 }
-// export async function dataMockedFetched(userId: number) {
-//   // console.log("début");
-//   // crée une new promise qui est résolue avec un objet de type 'user'
-//   // elle prend en compte deux fonctions de rappel, resolve et reject
-//   fetch("").then((userDatas: any) => {
-//     // le return crée une nouvelle instance de classe 'user' en utilisant les données de l'utilisateur résolue 'userDatas'
-//     // et la retourne
-//     return new User(userDatas);
-//   });
-// }
+// Fonction asynchrone qui simule la récupération des activités d'un utilisateur en utilisant une promesse
 export async function userActivityMocked(userId: number) {
   return new Promise<UserActivities>((resolve, reject) => {
     setTimeout(() => {
+      // Un objet contenant des données fictives d'activités d'utilisateurs
       const usersDatas = {
         12: {
           userId: 12,
@@ -173,17 +152,20 @@ export async function userActivityMocked(userId: number) {
         },
       } as any;
       if (usersDatas[userId]) {
+        // Si l'identifiant d'utilisateur existe dans les données fictives, résoudre la promesse avec ces données
         resolve(usersDatas[userId]);
       } else {
+        // Sinon, rejeter la promesse avec un message d'erreur
         reject("erreur");
       }
     }, 500);
   });
 }
-
+// Fonction qui simule la récupération de la progression moyenne d'un utilisateur en utilisant une promesse
 export function userAverageSessionsMocked() {
   return new Promise<UserProgression>((resolve, reject) => {
     setTimeout(() => {
+      // Résoudre la promesse avec des données fictives de progression moyenne d'un utilisateur
       resolve({
         userId: 12,
         sessions: [
@@ -220,10 +202,11 @@ export function userAverageSessionsMocked() {
     }, 500);
   });
 }
-
+// Fonction qui simule la récupération des performances d'un utilisateur en utilisant une promesse
 export function userPerformanceMocked() {
   return new Promise<UserPerformance>((resolve) => {
     setTimeout(() => {
+      // Créer une instance de la classe 'UserPerformance' avec des données fictives de performance d'un utilisateur
       const performanceData: UserPerformance | null = new UserPerformance(
         12,
         {
@@ -261,7 +244,7 @@ export function userPerformanceMocked() {
           },
         ]
       );
-
+      // Résoudre la promesse avec les données de performance créées
       resolve(performanceData);
     }, 500);
   });
