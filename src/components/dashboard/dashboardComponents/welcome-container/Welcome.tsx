@@ -5,6 +5,8 @@ import User from "../../../../Classes/User";
 
 function Welcome({ user }: { user: User }) {
   const firstName = user.userInfos.firstName; // Accès à la propriété firstName de l'objet user.userInfos
+  console.log(user.userInfos);
+  
 
   return (
     <article className="welcome-container">

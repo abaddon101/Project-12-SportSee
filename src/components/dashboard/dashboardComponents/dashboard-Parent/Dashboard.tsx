@@ -11,12 +11,18 @@ import Glucides from "../nutrition-container/Glucides";
 import Lipides from "../nutrition-container/Lipides";
 
 import "./style.scss";
+// import {
+//   dataMocked,
+//   userActivityMocked,
+//   userAverageSessionsMocked,
+//   userPerformanceMocked,
+// } from "../../../../Api/datamocked";
 import {
   dataMocked,
   userActivityMocked,
   userAverageSessionsMocked,
   userPerformanceMocked,
-} from "../../../../Api/datamocked";
+} from "../../../../Api/dataFetched";
 import User from "../../../../Classes/User";
 import UserActivities from "../../../../Classes/UserActivities";
 import UserProgression from "../../../../Classes/UserProgression";
@@ -64,6 +70,8 @@ function Dashboard() {
       // Appel à la fonction asynchrone pour récupérer les données de l'utilisateur en utilisant l'ID
       dataMocked(userId).then((user: User) => {
         // Met à jour l'état 'user' avec les données de l'utilisateur récupérées
+        console.log("user :", user);
+
         setUser(user);
       });
 
@@ -74,13 +82,13 @@ function Dashboard() {
       });
 
       // Appel à la fonction asynchrone pour récupérer la progression moyenne de l'utilisateur
-      userAverageSessionsMocked().then((userProgression: UserProgression) => {
+      userAverageSessionsMocked(userId).then((userProgression: UserProgression) => {
         // Met à jour l'état 'userProgression' avec la progression moyenne de l'utilisateur récupérée
         setUserProgression(userProgression);
       });
 
       // Appel à la fonction asynchrone pour récupérer les performances de l'utilisateur
-      userPerformanceMocked().then((performanceData: unknown) => {
+      userPerformanceMocked(userId).then((performanceData: unknown) => {
         // Vérification et conversion des données de performance
 
         // Vérifie si la donnée de performance n'est pas nulle et si elle est de type objet
