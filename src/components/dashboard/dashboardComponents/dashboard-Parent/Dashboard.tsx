@@ -11,12 +11,19 @@ import Glucides from "../nutrition-container/Glucides";
 import Lipides from "../nutrition-container/Lipides";
 
 import "./style.scss";
+// import {
+//   dataMocked,
+//   userActivityMocked,
+//   userAverageSessionsMocked,
+//   userPerformanceMocked,
+// } from "../../../../Api/dataFetched";
+
 import {
   dataMocked,
   userActivityMocked,
   userAverageSessionsMocked,
   userPerformanceMocked,
-} from "../../../../Api/dataFetched";
+} from "../../../../Api/datamocked";
 
 import User from "../../../../Classes/User";
 import UserActivities from "../../../../Classes/UserActivities";
@@ -67,7 +74,9 @@ function Dashboard() {
         });
 
       // Chargement de la progression moyenne de l'utilisateur à partir de la fonction userAverageSessionsMocked
-      userAverageSessionsMocked(userId)
+      userAverageSessionsMocked()
+        //retirer le param si dataMocked
+        // remettre  param userId si dataFetched
         .then((userProgression: UserProgression) => {
           setUserProgression(userProgression);
         })
@@ -76,7 +85,9 @@ function Dashboard() {
         });
 
       // Chargement des performances de l'utilisateur à partir de la fonction userPerformanceMocked
-      userPerformanceMocked(userId)
+      userPerformanceMocked()
+        //retirer le param si dataMocked
+        // remettre  param userId si dataFetched
         .then((performanceData: unknown) => {
           if (performanceData !== null && typeof performanceData === "object") {
             setUserPerformance(performanceData as UserPerformance);

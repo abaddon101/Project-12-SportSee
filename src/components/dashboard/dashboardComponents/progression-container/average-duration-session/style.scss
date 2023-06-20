@@ -5,11 +5,23 @@
   height: 300px;
   padding: 20px;
   border-radius: 5px;
+  position: relative;
 }
 
 .average-container-title {
   margin: 20px;
+  margin-bottom: 25px;
   font-size: 10px;
   width: 161px;
   position: absolute;
+}
+.custom-tooltip {
+  background: white;
+  color: black;
+  font-size: 10px;
+}
+
+.chart-container {
+  position: absolute;
+  top: 35px;
 }
