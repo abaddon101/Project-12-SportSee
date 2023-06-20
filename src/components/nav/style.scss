@@ -7,6 +7,12 @@
   width: 100%;
   height: auto;
 }
+a {
+  text-decoration: none;
+}
+a:visited {
+  color: inherit;
+}
 .logo-navbar {
   width: 190px;
   margin: 15px;

@@ -27,7 +27,12 @@
     align-self: center;
     align-items: center;
     justify-content: center;
+    text-decoration: none;
+    :visited {
+      color: inherit;
+    }
   }
+
   .logo-navbar {
     align-items: center;
     width: 40px;

@@ -19,6 +19,17 @@
   height: 350px;
 }
 
+.error-message {
+  margin: 25px;
+  font-size: 30px;
+  align-items: center;
+  color: red;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+}
+
 /* Ajoutez ces styles pour la réactivité */
 @media screen and (max-width: 900px) {
   .dashboard {
