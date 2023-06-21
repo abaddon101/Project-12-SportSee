@@ -74,9 +74,7 @@ function Dashboard() {
         });
 
       // Chargement de la progression moyenne de l'utilisateur à partir de la fonction userAverageSessionsMocked
-      userAverageSessionsMocked()
-        //retirer le param si dataMocked
-        // remettre  param userId si dataFetched
+      userAverageSessionsMocked(userId)
         .then((userProgression: UserProgression) => {
           setUserProgression(userProgression);
         })
@@ -85,9 +83,7 @@ function Dashboard() {
         });
 
       // Chargement des performances de l'utilisateur à partir de la fonction userPerformanceMocked
-      userPerformanceMocked()
-        //retirer le param si dataMocked
-        // remettre  param userId si dataFetched
+      userPerformanceMocked(userId)
         .then((performanceData: unknown) => {
           if (performanceData !== null && typeof performanceData === "object") {
             setUserPerformance(performanceData as UserPerformance);

@@ -162,90 +162,174 @@ export async function userActivityMocked(userId: number) {
   });
 }
 // Fonction qui simule la récupération de la progression moyenne d'un utilisateur en utilisant une promesse
-export function userAverageSessionsMocked() {
+export async function userAverageSessionsMocked(userId: number) {
   return new Promise<UserProgression>((resolve, reject) => {
     setTimeout(() => {
-      // Résoudre la promesse avec des données fictives de progression moyenne d'un utilisateur
-      resolve({
-        userId: 12,
-        sessions: [
-          {
-            day: 1,
-            sessionLength: 30,
-          },
-          {
-            day: 2,
-            sessionLength: 23,
-          },
-          {
-            day: 3,
-            sessionLength: 45,
-          },
-          {
-            day: 4,
-            sessionLength: 50,
-          },
-          {
-            day: 5,
-            sessionLength: 0,
-          },
-          {
-            day: 6,
-            sessionLength: 0,
-          },
-          {
-            day: 7,
-            sessionLength: 60,
-          },
-        ],
-      });
+      // Un objet contenant des données fictives de progression moyenne d'un utilisateur
+      const usersDatas = {
+        12: {
+          userId: 12,
+          sessions: [
+            {
+              day: 1,
+              sessionLength: 30,
+            },
+            {
+              day: 2,
+              sessionLength: 23,
+            },
+            {
+              day: 3,
+              sessionLength: 45,
+            },
+            {
+              day: 4,
+              sessionLength: 50,
+            },
+            {
+              day: 5,
+              sessionLength: 0,
+            },
+            {
+              day: 6,
+              sessionLength: 0,
+            },
+            {
+              day: 7,
+              sessionLength: 60,
+            },
+          ],
+        },
+        18: {
+          userId: 18,
+          sessions: [
+            {
+              day: 1,
+              sessionLength: 30,
+            },
+            {
+              day: 2,
+              sessionLength: 40,
+            },
+            {
+              day: 3,
+              sessionLength: 50,
+            },
+            {
+              day: 4,
+              sessionLength: 30,
+            },
+            {
+              day: 5,
+              sessionLength: 30,
+            },
+            {
+              day: 6,
+              sessionLength: 50,
+            },
+            {
+              day: 7,
+              sessionLength: 50,
+            },
+          ],
+        },
+      } as any;
+      if (usersDatas[userId]) {
+        // Si l'identifiant d'utilisateur existe dans les données fictives, résoudre la promesse avec ces données
+        resolve(usersDatas[userId]);
+      } else {
+        // Sinon, rejeter la promesse avec un message d'erreur
+        reject("erreur");
+      }
     }, 500);
   });
 }
 // Fonction qui simule la récupération des performances d'un utilisateur en utilisant une promesse
-export function userPerformanceMocked() {
-  return new Promise<UserPerformance>((resolve) => {
+export async function userPerformanceMocked(userId: number) {
+  return new Promise<UserPerformance[]>((resolve, reject) => {
     setTimeout(() => {
-      // Créer une instance de la classe 'UserPerformance' avec des données fictives de performance d'un utilisateur
-      const performanceData: UserPerformance | null = new UserPerformance(
-        12,
-        {
-          1: "cardio",
-          2: "energy",
-          3: "endurance",
-          4: "strength",
-          5: "speed",
-          6: "intensity",
+      const performanceData = {
+        12: {
+          userId: 12,
+          kind: {
+            1: "cardio",
+            2: "energy",
+            3: "endurance",
+            4: "strength",
+            5: "speed",
+            6: "intensity",
+          },
+          data: [
+            {
+              value: 80,
+              kind: 1,
+            },
+            {
+              value: 120,
+              kind: 2,
+            },
+            {
+              value: 140,
+              kind: 3,
+            },
+            {
+              value: 50,
+              kind: 4,
+            },
+            {
+              value: 200,
+              kind: 5,
+            },
+            {
+              value: 90,
+              kind: 6,
+            },
+          ],
         },
-        [
-          {
-            value: 80,
-            kind: 1,
+        18: {
+          userId: 18,
+          kind: {
+            1: "cardio",
+            2: "energy",
+            3: "endurance",
+            4: "strength",
+            5: "speed",
+            6: "intensity",
           },
-          {
-            value: 120,
-            kind: 2,
-          },
-          {
-            value: 140,
-            kind: 3,
-          },
-          {
-            value: 50,
-            kind: 4,
-          },
-          {
-            value: 200,
-            kind: 5,
-          },
-          {
-            value: 90,
-            kind: 6,
-          },
-        ]
-      );
-      // Résoudre la promesse avec les données de performance créées
-      resolve(performanceData);
+          data: [
+            {
+              value: 200,
+              kind: 1,
+            },
+            {
+              value: 240,
+              kind: 2,
+            },
+            {
+              value: 80,
+              kind: 3,
+            },
+            {
+              value: 80,
+              kind: 4,
+            },
+            {
+              value: 220,
+              kind: 5,
+            },
+            {
+              value: 110,
+              kind: 6,
+            },
+          ],
+        },
+      } as any;
+      if (performanceData[userId]) {
+        resolve(performanceData[userId]);
+      } else {
+        // Sinon, rejeter la promesse avec un message d'erreur
+        reject("erreur");
+      }
     }, 500);
   });
 }
