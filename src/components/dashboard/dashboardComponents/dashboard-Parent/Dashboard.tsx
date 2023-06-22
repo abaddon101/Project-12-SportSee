@@ -11,12 +11,6 @@ import Glucides from "../nutrition-container/Glucides";
 import Lipides from "../nutrition-container/Lipides";
 
 import "./style.scss";
-// import {
-//   dataMocked,
-//   userActivityMocked,
-//   userAverageSessionsMocked,
-//   userPerformanceMocked,
-// } from "../../../../Api/dataFetched";
 
 import {
   dataMocked,
@@ -25,16 +19,21 @@ import {
   userPerformanceMocked,
 } from "../../../../Api/datamocked";
 
+// import {
+//   dataMocked,
+//   userActivityMocked,
+//   userAverageSessionsMocked,
+//   userPerformanceMocked,
+// } from "../../../../Api/dataFetched";
+
 import User from "../../../../Classes/User";
 import UserActivities from "../../../../Classes/UserActivities";
 import UserProgression from "../../../../Classes/UserProgression";
 import UserPerformance from "../../../../Classes/UserPerformance";
 
 function Dashboard() {
-  // Récupération de l'ID de l'utilisateur à partir des paramètres d'URL
   const { id } = useParams<{ id?: string }>();
 
-  // Déclaration des variables d'état
   const [user, setUser] = useState<User | null>(null);
   const [userActivities, setUserActivities] = useState<UserActivities | null>(
     null
@@ -44,99 +43,112 @@ function Dashboard() {
   const [userPerformance, setUserPerformance] =
     useState<UserPerformance | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [userSelected, setUserSelected] = useState(false);
 
   useEffect(() => {
-    // Fonction exécutée lorsque l'ID de l'utilisateur change
     if (id) {
       const userId = parseInt(id);
 
-      // Chargement des données de l'utilisateur à partir de la fonction dataMocked
-      dataMocked(userId)
-        .then((user: User) => {
-          if (user) {
-            setUser(user);
-            setError(null);
-          } else {
-            setError("Erreur, L'ID n'existe pas dans la base de données");
-          }
-        })
-        .catch(() => {
-          setError("Erreur, L'ID n'existe pas dans la base de données");
-        });
+      if (isNaN(userId) || id !== userId.toString()) {
+        // ID non valide, afficher une erreur 404
+        setError("Erreur 404: Page non trouvée");
+        setUserSelected(false);
+        setUser(null);
+        setUserActivities(null);
+        setUserProgression(null);
+        setUserPerformance(null);
+      } else {
+        // ID valide, effectuer les appels API
+        setError(null);
+        setUserSelected(true);
 
-      // Chargement des activités de l'utilisateur à partir de la fonction userActivityMocked
-      userActivityMocked(userId)
-        .then((userActivities: UserActivities) => {
-          setUserActivities(userActivities);
-        })
-        .catch(() => {
-          setError("Erreur, L'ID n'existe pas dans la base de données");
-        });
+        Promise.all([
+          dataMocked(userId),
+          userActivityMocked(userId),
+          userAverageSessionsMocked(userId),
+          userPerformanceMocked(userId),
+        ])
+          .then(
+            ([userData, activityData, progressionData, performanceData]) => {
+              if (userData) {
+                setUser(userData);
+                setUserActivities(activityData);
+                setUserProgression(progressionData);
 
-      // Chargement de la progression moyenne de l'utilisateur à partir de la fonction userAverageSessionsMocked
-      userAverageSessionsMocked(userId)
-        .then((userProgression: UserProgression) => {
-          setUserProgression(userProgression);
-        })
-        .catch(() => {
-          setError("Erreur, L'ID n'existe pas dans la base de données");
-        });
-
-      // Chargement des performances de l'utilisateur à partir de la fonction userPerformanceMocked
-      userPerformanceMocked(userId)
-        .then((performanceData: unknown) => {
-          if (performanceData !== null && typeof performanceData === "object") {
-            setUserPerformance(performanceData as UserPerformance);
-          }
-        })
-        .catch(() => {
-          setError("Erreur, L'ID n'existe pas dans la base de données");
-        });
+                // Vérification du module importé pour déterminer le type de userPerformance
+                if (
+                  Array.isArray(performanceData) &&
+                  performanceData.length > 0
+                ) {
+                  setUserPerformance(performanceData[0]);
+                } else {
+                  setUserPerformance(performanceData as UserPerformance);
+                }
+              } else {
+                setError("Erreur 404: Page non trouvée");
+                setUserSelected(false);
+                setUser(null);
+                setUserActivities(null);
+                setUserProgression(null);
+                setUserPerformance(null);
+              }
+            }
+          )
+          .catch(() => {
+            setError("Erreur 404: Page non trouvée");
+            setUserSelected(false);
+            setUser(null);
+            setUserActivities(null);
+            setUserProgression(null);
+            setUserPerformance(null);
+          });
+      }
     } else {
-      setError("Erreur, L'ID n'existe pas dans la base de données");
+      setError(null);
+      setUserSelected(false);
+      setUser(null);
+      setUserActivities(null);
+      setUserProgression(null);
+      setUserPerformance(null);
     }
   }, [id]);
+
+  const renderErrorMessage = () => {
+    return <div className="error-message">{error}</div>;
+  };
 
   return (
     <div className="dashboard">
       <section className="dashboard-principal">
-        {/* Affichage du message d'erreur s'il y en a */}
-        {error && <div className="error-message">{error}</div>}
+        {!userSelected && error === null && (
+          <div className="choose-user-message">
+            Veuillez choisir un utilisateur.
+          </div>
+        )}
 
-        {/* Affichage du composant Welcome avec les données de l'utilisateur s'il existe */}
-        {user != null && <Welcome user={user} />}
+        {error && renderErrorMessage()}
 
-        {/* Affichage du composant Activities avec les activités de l'utilisateur s'il existent */}
-        {userActivities != null && (
+        {user != null && userSelected && <Welcome user={user} />}
+        {userActivities != null && userSelected && (
           <Activities userActivities={userActivities} />
         )}
 
         <div className="progression-container">
-          {/* Affichage du composant Average avec la progression moyenne de l'utilisateur s'il existe */}
-          {userProgression != null && (
+          {userProgression != null && userSelected && (
             <Average userProgression={userProgression} />
           )}
-
-          {/* Affichage du composant Spider avec les performances de l'utilisateur s'il existent */}
-          {userPerformance != null && <Spider data={userPerformance.data} />}
-
-          {/* Affichage du composant Score avec les données de l'utilisateur s'il existe */}
-          {user != null && <Score user={user} />}
+          {userPerformance != null && userSelected && (
+            <Spider data={userPerformance.data} />
+          )}
+          {user != null && userSelected && <Score user={user} />}
         </div>
       </section>
 
       <aside className="nutrition-aside-block">
-        {/* Affichage du composant Calories avec les données de l'utilisateur s'il existe */}
-        {user != null && <Calories user={user} />}
-
-        {/* Affichage du composant Proteines avec les données de l'utilisateur s'il existe */}
-        {user != null && <Proteines user={user} />}
-
-        {/* Affichage du composant Glucides avec les données de l'utilisateur s'il existe */}
-        {user != null && <Glucides user={user} />}
-
-        {/* Affichage du composant Lipides avec les données de l'utilisateur s'il existe */}
-        {user != null && <Lipides user={user} />}
+        {user != null && userSelected && <Calories user={user} />}
+        {user != null && userSelected && <Proteines user={user} />}
+        {user != null && userSelected && <Glucides user={user} />}
+        {user != null && userSelected && <Lipides user={user} />}
       </aside>
     </div>
   );

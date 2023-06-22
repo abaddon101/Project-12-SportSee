@@ -3,20 +3,27 @@
   align-items: center;
   background-color: black;
 }
+
 .navbar {
   width: 100%;
   height: auto;
 }
+
 a {
   text-decoration: none;
+  color: white;
 }
-a:visited {
+
+a:visited,
+a:active {
   color: inherit;
 }
+
 .logo-navbar {
   width: 190px;
   margin: 15px;
 }
+
 .horizontale-menu {
   display: flex;
   align-items: center;

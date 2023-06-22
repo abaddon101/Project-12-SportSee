@@ -246,7 +246,7 @@ export async function userAverageSessionsMocked(userId: number) {
 }
 // Fonction qui simule la récupération des performances d'un utilisateur en utilisant une promesse
 export async function userPerformanceMocked(userId: number) {
-  return new Promise<UserPerformance[]>((resolve, reject) => {
+  return new Promise<UserPerformance>((resolve, reject) => {
     setTimeout(() => {
       const performanceData = {
         12: {

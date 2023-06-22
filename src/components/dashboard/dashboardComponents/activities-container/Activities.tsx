@@ -50,7 +50,17 @@ function Activities({ userActivities }: { userActivities: UserActivities }) {
           />
           {/* Affiche une info-bulle au survol des barres */}
           <Tooltip
-            itemStyle={{ width: "10px" }} // Modifier la valeur de width selon vos besoins
+            itemStyle={{ backgroundColor: "red", color: "white" }}
+            contentStyle={{ backgroundColor: "red", color: "white" }}
+            labelStyle={{ color: "white", display: "none" }} // Ajoutez "display: none" pour masquer la première ligne
+            formatter={(value, name) => {
+              if (name === "kilogram") {
+                return [`${value} kg`];
+              } else if (name === "calories") {
+                return [`${value} Kcal`];
+              }
+              return [value, name];
+            }}
           />
           {/* Première barre représentant les données de kilogrammes */}
           <Bar
