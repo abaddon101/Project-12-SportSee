@@ -93,7 +93,7 @@ function Dashboard() {
                   setUserPerformance(performanceData as UserPerformance); // Mise à jour de l'état des performances de l'utilisateur
                 }
               } else {
-                setError("Erreur 404: Page non trouvée"); // Affichage de l'erreur 404 si l'utilisateur n'est pas trouvé
+                setError("Erreur ID: l'identifiant n'existe pas ou n'est pas valide"); // Affichage de l'erreur 404 si l'utilisateur n'est pas trouvé
                 setUserSelected(false);
                 setUser(null);
                 setUserActivities(null);
@@ -132,7 +132,7 @@ function Dashboard() {
       <section className="dashboard-principal">
         {!userSelected && error === null && (
           <div className="choose-user-message">
-            Veuillez choisir un utilisateur.
+            Bonjour, Veuillez choisir un utilisateur.
           </div>
         )}
         {/* Si aucun utilisateur n'est sélectionné et il n'y a pas d'erreur, affiche un message demandant de choisir un utilisateur */}
